@@ -1,0 +1,3 @@
+#!/bin/bash
+
+cd /Users/VinGogh/Desktop/PT-Tools/python_tools/Whirlpool/ && python whirlpool.py "$@"

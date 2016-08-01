@@ -3,7 +3,7 @@
 
 import threading
 import Queue
-import libs.requests as requests
+import libs.requests
 import config
 
 
@@ -16,9 +16,10 @@ class Dirbrute(threading.Thread):
         self.scan_timeout = scan_timeout
         self.urllist = urllist
         self.load_headers()
+        self.response_status()
 
     def run(self):
-        # print 'Start Thread' + self.name
+        print 'Start Thread' + self.name
         self.scan()
 
     def load_headers(self):
@@ -29,22 +30,13 @@ class Dirbrute(threading.Thread):
             'Cache-Control': 'no-cache',
         }
 
-    def response_code(self):
-        if self.scan_status == 1:
-            pass
-        elif self.scan_status == 2:
-            self.scan_status = 403
+    def response_status(self):
+        pass
 
     def scan(self):
         while not self.urllist.empty():
             self.scan_url = self.scan_target + self.urllist.get()
-            try:
-                r = requests.get(self.scan_url, timeout=self.scan_timeout, headers=self.headers, allow_redirects=False)
-                # print r.url
-                if r.status_code == 200 or r.status_code == self.scan_status:
-                    print '[' + str(r.status_code) + ']' + " " + r.url
-            except Exception, e:
-                pass
+            print self.scan_url
 
 
 def load_dict():
@@ -57,14 +49,14 @@ def load_dict():
 
 
 def begin(scan_target, scan_thread, scan_status, scan_timeout):
-    # url = 'http://www.example.com/'
+    url = 'http://www.example.com/'
     scan_thread = 3
     scan_status = 200
     scan_timeout = 3
     urllist = load_dict()
     print 'Scan start!'
     for i in range(scan_thread):
-        t = Dirbrute(scan_target, scan_status, scan_timeout, urllist, i)
+        t = Dirbrute(url, scan_status, scan_timeout, urllist, i)
         t.start()
     t.join()
     print 'Scan done!'

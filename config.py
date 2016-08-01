@@ -15,7 +15,7 @@ code_default = 1
 
 # 设置字典路径
 # directory_dict = './dir/dir.txt'
-directory_dict = './dir/test.txt'
+directory_dict = './dir/dir_old.txt'
 
 # 报告路径
 report_path = './report/report.txt'
