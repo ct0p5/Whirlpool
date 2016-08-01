@@ -1,3 +1,9 @@
+简介：
+
+  多线程扫描，网站敏感目录暴力破解
+  默认使用御剑珍藏版目录字典，另外也加入了乌云常见漏洞链接＋珍藏版的目录，可在config.py里设置默认字典
+
+
 usage:    whirlpool.py [-h] -u SCAN_TARGET [-t SCAN_THREAD] [-s SCAN_STATUS] [--timeout SCAN_TIMEOUT]
 
 optional arguments:
